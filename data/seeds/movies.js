@@ -42,8 +42,26 @@ exports.seed = function(knex) {
         name: "Casablanca",
         year: 1942,
         summary: "A cynical American expatriate struggles to decide whether or not he should help his former lover and her fugitive husband escape French Morocco",
-        categories: "Drama, Romance, War"
+        categories: "Drama, Romance, War",
+        runtime: 102
       },
+      {
+        id: 6,
+        name: "Citizen Kane",
+        year: 1941,
+        summary: "Following the death of publishing tycoon Charles Foster Kane, reporters scramble to uncover the meaning of his final utterance; 'Rosebud'",
+        categories: "Drama, Mystery",
+        runtime: 119
+
+      },
+      {
+        id: 7,
+        name: "Gone with the Wind",
+        year: 1939,
+        summary: "A manipulative woman and a roguish man conduct a turbulent romance during the American Civil War and Reconstruction periods",
+        categories: "Drama, History, Romance",
+        runtime: 238
+      }
       
       
       ]);

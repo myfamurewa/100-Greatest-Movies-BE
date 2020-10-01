@@ -1,8 +1,7 @@
 
 exports.up = function(knex) {
-  
-      knex.schema
-      .createTable('users', tbl => {
+     return knex.schema
+      .createTable('users', (tbl) => {
           tbl.increments();
           tbl.string('display_name', 128)
           tbl.string('email', 128).unique().notNullable().index()
@@ -10,46 +9,45 @@ exports.up = function(knex) {
           tbl.string('phone_num', 128)
           tbl.string('google_id', 255)
       })
-      .createTable('movies', tbl => {
+      .createTable('movies', (tbl) => {
           tbl.increments()
           tbl.string("name")
           tbl.integer("year")
           tbl.string('summary', 1028)
           tbl.integer("runtime")
           tbl.string('categories')
+          tbl.string("rating")
       })
-      .createTable('comments', tbl => {
+      .createTable('comments', (tbl) => {
           tbl.increments()
           tbl.string("text").notNullable()
-          tbl
-          .integer('movie_id')
-          .unsigned()
-          .notNullable()
+          tbl.integer('movie_id')
           .references('id')
           .inTable('movies')
+          .unsigned()
+          .notNullable()
           .onDelete('CASCADE')
           .onUpdate('CASCADE')
           tbl.timestamps(true, true)
-          .tbl.boolean("edited").defaultTo(false)
+          tbl.boolean("edited").defaultTo(false)
       })
-      .createTable('ratings', tbl => {
+      .createTable('ratings', (tbl) => {
           tbl.increments()
-          tbl.integer('ratings')
-          tbl
-          .integer('movie_id')
-          .unsigned()
-          .notNullable()
+          tbl.integer('rating')
+          tbl.integer('movie_id')
           .references('id')
           .inTable('movies')
+          .unsigned()
+          .notNullable()
           .onDelete('CASCADE')
           .onUpdate('CASCADE')
-      })
+      });
 };
 
 exports.down = function(knex) {
   return knex.schema
-  .dropTableIfExist('users')
-  .dropTableIfExist('movies')
-  .dropTableIfExist('comments')
-  .dropTableIfExist('ratings')
+  .dropTableIfExists('users')
+  .dropTableIfExists('movies')
+  .dropTableIfExists('comments')
+  .dropTableIfExists('ratings')
 };
