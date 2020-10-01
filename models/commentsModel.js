@@ -23,7 +23,7 @@ function removeComment(id) {
     .del()
 }
 
-function editComment(id) {
+function editComment(id, comment) {
     return db('comments')
     .where({id})
     .update(comment)
