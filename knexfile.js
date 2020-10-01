@@ -1,77 +1,50 @@
-
 module.exports = {
-
     development: {
-      client: 'sqlite3',
-      UseNullAsDefault: true,
+      client: "sqlite3",
       connection: {
-        filename: './data/devdesk.db3',
-      },
-      migrations: {
-        directory: './data/migrations'
-      },
-      seeds: {
-        directory: './data/seeds'
-      }
-    },
-  
-    testing: {
-      client: 'sqlite3',
-      connection: {
-        filename: './data/devdesk_test.db'
+        filename: "./data/data.db3",
       },
       useNullAsDefault: true,
       migrations: {
-        directory: './data/migrations',
-        tableName: 'dbmigrations',
+        directory: "./data/migrations",
       },
-      seeds: { directory: './data/seeds' },
-    },
-  
-    staging: {
-      client: 'postgresql',
-      connection: {
-        database: 'my_db',
-        user:     'username',
-        password: 'password'
+      seeds: {
+        directory: "./data/seeds",
       },
       pool: {
-        min: 2,
-        max: 10
+        afterCreate: (conn, done) => {
+          conn.run("PRAGMA foreign_keys = ON", done);
+        },
+      },
+    },
+  
+    testing: {
+      client: "sqlite3",
+      connection: {
+        filename: "./data/test.db3",
+      },
+      useNullAsDefault: true,
+      pool: {
+        afterCreate: (conn, done) => {
+          conn.run("PRAGMA foreign_keys = ON", done);
+        },
       },
       migrations: {
-        tableName: 'knex_migrations'
-      }
+        directory: "./data/migrations",
+      },
+      seeds: {
+        directory: "./data/seeds",
+      },
     },
   
     production: {
-      client: 'postgresql',
-      connection: {
-        database: 'my_db',
-        user:     'username',
-        password: 'password'
-      },
-      pool: {
-        min: 2,
-        max: 10
-      },
+      client: "pg",
+      connection: process.env.DATABASE_URL,
       migrations: {
-        tableName: 'knex_migrations'
-      }
+        directory: "./data/migrations",
+      },
+      seeds: {
+        directory: "./data/seeds",
+      },
     }
-  
   };
-  
-  exports.seed = function(knex) {
-    // Deletes ALL existing entries
-    return knex('table_name').del()
-      .then(function () {
-        // Inserts seed entries
-        return knex('table_name').insert([
-          {id: 1, colName: 'rowValue1'},
-          {id: 2, colName: 'rowValue2'},
-          {id: 3, colName: 'rowValue3'}
-        ]);
-      });
-  };
-  

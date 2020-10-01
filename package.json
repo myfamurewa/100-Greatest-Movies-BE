@@ -1,0 +1,29 @@
+{
+  "name": "100-greatest-movies-be",
+  "version": "1.0.0",
+  "description": "A database to store data from 100 greatest movies",
+  "main": "index.js",
+  "dependencies": {
+    "cors": "^2.8.5",
+    "dotenv": "^8.2.0",
+    "express": "^4.17.1",
+    "helmet": "^4.1.1",
+    "knex": "^0.21.6",
+    "sqlite3": "^5.0.0"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "test",
+    "start": "node server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/myfamurewa/100-Greatest-Movies-BE.git"
+  },
+  "author": "Michael Famurewa",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/myfamurewa/100-Greatest-Movies-BE/issues"
+  },
+  "homepage": "https://github.com/myfamurewa/100-Greatest-Movies-BE#readme"
+}

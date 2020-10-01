@@ -3,33 +3,45 @@ const db = require('../data/dbConfig.js')
 
 module.exports = {
     find,
-    findBy,
-    findById,
-    insert,
+    find,
+    getBy,
+    getById,
+    add,
+    getByEmail,
     update,
-    remove
+    erase,
 }
 
 function find() {
     return db('users');
-}
+  }
+  
+  function getBy(filter) {
+    return db('users').where(filter);
+  }
+  
+  function getByEmail(filter) {
+    return db('users')
+      .where('email', '=', filter)
+      .first();
+  }
+  function getById(id) {
+    return db('users')
+      .where({ id })
+      .first();
+  }
+  function add(user) {
+    return db('users').insert(user, 'id');
+  }
 
-function findBy(username) {
-    return db('users').where({ username }).first();
-}
+  function update(id, user) {
+      return db('users')
+      .where({ id })
+      .update(user)
+  };
 
-function findById(id) {
-    return db('users').where({ id }).first();
-}
-
-function insert(user) {
-    return db('users').insert(user);
-}
-
-function update(user) {
-    return db('users').where({id: user.id}).update(user);
-}
-
-function remove(id) {
-    return db('users').where({ id }).del();
+  function erase(id, user){
+    return db('users')
+    .where({ id })
+    .del()
 }

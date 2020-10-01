@@ -3,8 +3,6 @@ const db = require("../data/dbconfig")
 module.exports = {
     get,
     getById,
-    findByCategory,
-    findByRating
 }
 
 function get() {
@@ -17,13 +15,6 @@ function getById(id) {
     .first()
 }
 
-function findByCategory() {
-    return db('movies')
-    .where(category);
-}
 
-function findByRating(minRating) {
-    return db('movies')
-    .where(rating >= minRating )
-}
+
 
