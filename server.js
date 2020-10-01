@@ -4,7 +4,7 @@ const passport = require('passport')
 const morgan = require('morgan')
 const helmet = require("helmet");
 const cors = require("cors");
-const server = express
+const server = express()
 server.use(helmet.noSniff()); 
 server.use(express.json());
 server.use(cors());
@@ -19,7 +19,8 @@ const userRouter = require('./routers/users-router')
 server.use('/auth', authRouter)
 server.use('/users', userRouter)
 server.use('/movies', moviesRouter)
-server.use('/comments', commentRouter)
+// server.use('/comments', commentRouter)
+
 server.get("/", (req, res) => {
     res.status(200).send("API functional")
 })

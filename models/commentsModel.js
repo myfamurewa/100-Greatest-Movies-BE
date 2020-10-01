@@ -1,4 +1,4 @@
-const db = knex(knexConfig.development)
+const db = require("../data/dbconfig")
 
 module.exports = {
     findComments,

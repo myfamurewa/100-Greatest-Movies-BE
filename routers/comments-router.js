@@ -54,3 +54,5 @@ router.delete('/:id', async (req, res) => {
         res.status(500).json({errorMessage: 'There was an error deleting the comment.'})
     })
 })
+
+module.exports = router;

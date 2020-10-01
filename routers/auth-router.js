@@ -2,7 +2,7 @@ const router = require("express").Router();
 const jwt = require("jsonwebtoken");
 const bcrypt = require("bcryptjs");
 const passport = require("passport");
-const Users = require("../models/user-models");
+const Users = require("../models/userModel");
 
 router.get("/google",   passport.authenticate("google", {
     scope: ["profile", "email"],

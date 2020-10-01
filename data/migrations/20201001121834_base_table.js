@@ -13,7 +13,9 @@ exports.up = function(knex) {
       .createTable('movies', tbl => {
           tbl.increments()
           tbl.string("name")
+          tbl.integer("year")
           tbl.string('summary', 1028)
+          tbl.integer("runtime")
           tbl.string('categories')
       })
       .createTable('comments', tbl => {
