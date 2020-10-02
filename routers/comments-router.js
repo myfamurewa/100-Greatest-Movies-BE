@@ -17,7 +17,11 @@ router.get('/:id', async (req, res) => {
     const {id} = req.params;
     Comments.findCommentbyCommentId(id).then(comment => {
         console.log(comment)
-        res.status(200).json(comment)
+        if(comment === []){
+            res.status(404).json({message: "this comment does not exist"})
+        } else {
+            res.status(200).json(comment)
+        }
     }).catch(err => {
         console.log(err)
         res.status(500).json({errorMessage: "Something went wrong"})
