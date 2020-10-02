@@ -1,6 +1,5 @@
 
-
-const db = knex(knexConfig.development)
+const db = require('../data/dbConfig.js')
 
 module.exports = {
     getRatings,
