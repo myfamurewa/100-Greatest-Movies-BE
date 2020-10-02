@@ -1,10 +1,11 @@
-const { where } = require("../data/dbconfig")
+
 
 const db = knex(knexConfig.development)
 
 module.exports = {
     getRatings,
-    getRatingsById
+    getRatingsById,
+    newRating
 }
 
 function getRatings() {
@@ -13,5 +14,10 @@ function getRatings() {
 
 function getRatingsById(movieId) {
     return db('ratings')
-    .where('movie_id' === movieId)
+    .where('movie_id', movieId)
+}
+
+function newRating(rating) {
+    return db('ratings')
+    .insert(rating)
 }

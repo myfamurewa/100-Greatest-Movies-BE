@@ -12,14 +12,14 @@ server.use(morgan('dev'))
 server.use(passport.initialize())
 server.use(passport.session())
 const authRouter = require('./routers/auth-router')
-const commentRouter = require('./routers/comments-router')
+const ratingsRouter = require('./routers/ratings-router')
 const moviesRouter = require('./routers/movies-router')
 const userRouter = require('./routers/users-router')
 
 server.use('/auth', authRouter)
 server.use('/users', userRouter)
 server.use('/movies', moviesRouter)
-// server.use('/comments', commentRouter)
+server.use('/ratings', ratingsRouter)
 
 server.get("/", (req, res) => {
     res.status(200).send("API functional")
