@@ -1,14 +1,27 @@
 const router = require('express').Router()
 const Comments = require('../models/commentsModel')
 
+router.get('/', async (req, res) => {
+    const id = req.baseUrl.split("/")[2];
+    console.log(id)
+    Comments.findComments(id).then(comments => {
+        console.log(comments)
+        res.status(200).json(comments)
+    }).catch(err => {
+        console.log(err)
+        res.status(500).json({err, params: req.body})
+    })
+})
+
 router.get('/:id', async (req, res) => {
     const {id} = req.params;
-    try {
-        const comments = await Comments.get(id)
-        res.status(200).json(comments)
-    } catch(error) {
-        res.status(500).json(error)
-    }
+    Comments.findCommentbyCommentId(id).then(comment => {
+        console.log(comment)
+        res.status(200).json(comment)
+    }).catch(err => {
+        console.log(err)
+        res.status(500).json({errorMessage: "Something went wrong"})
+    })
 })
 
 router.post('/', async (req, res) => {
@@ -32,10 +45,11 @@ router.put('/:id', async (req, res) => {
         res.status(400).json({errorMessage: 'Please provide text for the comment'}
         )
     }
+    console.log(id)
     Comments.editComment(id, comment).then(comment =>
         res.status(204).json(comment)
     ).catch(err => 
-        res.status(500).json({errorMessage: 'Something went wrong', err})
+        res.status(500).json({errorMessage: 'Something went wrong', requestid: req.params})
     )
 })
 

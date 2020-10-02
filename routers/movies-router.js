@@ -1,5 +1,10 @@
-const router = require('express').Router()
+const express = require('express')
+const router = express.Router({mergeParams: true})
 const Movies = require('../models/moviesModel')
+const commentsRouter = require('./comments-router')
+
+
+router.use('/:id/comments', commentsRouter)
 
 router.get('/', async (req, res) => {
     // try {
@@ -42,5 +47,6 @@ router.get('/:id', async (req, res) => {
         res.status(500).json({Error: err})
     })
 })
+
 
 module.exports = router;
